@@ -30,7 +30,7 @@ const RecipeDetailScreen: React.FC<RecipeDetailScreenProps> = ({ route }) => {
         );
         const data = await res.json();
         if (data.meals && data.meals[0]) {
-          setMeal(data.meals[0]);
+          setMall(data.meals[0]);
         }
       } catch (error) {
         console.error("Error fetching meal:", error);
