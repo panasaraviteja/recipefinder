@@ -1,45 +1,44 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
+// App.tsx
+import React, { useEffect, useState } from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import { Provider, useDispatch } from "react-redux";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
-import { NewAppScreen } from '@react-native/new-app-screen';
-import { StatusBar, StyleSheet, useColorScheme, View } from 'react-native';
-import {
-  SafeAreaProvider,
-  useSafeAreaInsets,
-} from 'react-native-safe-area-context';
+import store from "./src/stores/store";
+import { login } from "./src/features/authSlice";
+import AppNavigator, { RootStackParamList } from "./src/navigation/AppNavigator";
 
-function App() {
-  const isDarkMode = useColorScheme() === 'dark';
+function RootNavigator() {
+  const [loading, setLoading] = useState(true);
+  const dispatch = useDispatch();
+  const [initialRoute, setInitialRoute] =
+    useState<keyof RootStackParamList>("Signup");
 
-  return (
-    <SafeAreaProvider>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <AppContent />
-    </SafeAreaProvider>
-  );
+  useEffect(() => {
+    const checkToken = async () => {
+      const token = await AsyncStorage.getItem("userToken");
+      if (token) {
+        dispatch(login(token));
+        setInitialRoute("Home");
+      } else {
+        setInitialRoute("Signup");
+      }
+      setLoading(false);
+    };
+    checkToken();
+  }, [dispatch]);
+
+  if (loading) return null; 
+
+  return <AppNavigator initialRoute={initialRoute} />;
 }
 
-function AppContent() {
-  const safeAreaInsets = useSafeAreaInsets();
-
+export default function App() {
   return (
-    <View style={styles.container}>
-      <NewAppScreen
-        templateFileName="App.tsx"
-        safeAreaInsets={safeAreaInsets}
-      />
-    </View>
+    <Provider store={store}>
+      <NavigationContainer>
+        <RootNavigator />
+      </NavigationContainer>
+    </Provider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});
-
-export default App;
