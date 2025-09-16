@@ -36,8 +36,7 @@ yarn ios
 If everything is set up correctly, you should see your new app running in the Android Emulator, iOS Simulator, or your connected device.
 
 
-Step 3: Modify your app
-Now that you have successfully run the app, let's make changes!
+
 
 
 
