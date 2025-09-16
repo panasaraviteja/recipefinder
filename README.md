@@ -44,17 +44,6 @@ Open App.tsx in your text editor of choice and make some changes. When you save,
 
 When you want to forcefully reload, for example to reset the state of your app, you can perform a full reload:
 
-Android: Press the R key twice or select "Reload" from the Dev Menu, accessed via Ctrl + M (Windows/Linux) or Cmd ⌘ + M (macOS).
-iOS: Press R in iOS Simulator.
-Congratulations! 🎉
-You've successfully run and modified your React Native App. 🥳
-
-Now what?
-If you want to add this new React Native code to an existing application, check out the Integration guide.
-If you're curious to learn more about React Native, check out the docs.
-Troubleshooting
-Recipe Finder App – Documentation Introduction Recipe Finder is a React Native app that helps users discover recipes using TheMealDB API. Users can: • Browse recipes • Search meals • View recipe details and ingredients • Add meals to Favorites • Get a random recipe with a "Surprise Me" button This project demonstrates React Native with Redux Toolkit, async data handling using filter functions, and React Navigation.
-
 Packages Used Install these before running the project: npm install @react-navigation/native @react-navigation/bottom-tabs @react-navigation/stack
 
 npm install react-native-gesture-handler react-native-reanimated react-native-screens react-native-safe-area-context react-native-vector-icons
